@@ -1,0 +1,52 @@
+{% extends 'orga/orga.base.html.twig' %}
+
+{% block title %}Liste des Evenements{% endblock %}
+
+{% block content %}
+    <h1>{{ event.name }}</h1>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+    {% for trame in trames %}
+        {% set active = '' %}
+        {% if loop.index0 == 0 %}
+            {% set active = 'active' %}
+        {% endif %}
+        <li class="nav-item {{ active }}">
+                <a class="nav-link" id="{{ loop.index0 }}-tab" data-toggle="tab" href="#tab-{{ loop.index0 }}" role="tab" aria-controls="profile" aria-selected="false">{{ trame.name }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+        {% for trame in trames %}
+            {% set active = '' %}
+            {% if loop.index0 == 0 %}
+                {% set active = 'show active' %}
+            {% endif %}
+            <div class="tab-pane fade {{ active }}" id="tab-{{ loop.index0 }}" role="tabpanel" aria-labelledby="profile-tab">
+                <h3>{{ trame.name }}</h3>
+                <p>Orga : {{ trame.orga }}</p>
+                <p>Type : {{ trame.type }}</p>
+                <p>Matos : {{ trame.matos }}</p>
+                <p>Description : {{ trame.description }}</p>
+                <div>
+                    <h4>ScenarToBack</h4>
+                    {% for stb in stbs %}
+                        {% if stb.trame.id == trame.id %}
+                            <div style="border: 2px solid black">
+                                <p>Numero {{ stb.id}}</p>
+                                <p>Personnages</p>
+                                <ul>
+                                    {% for char in stb.characters %}
+                                        <li>{{ char }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <h5>Description</h5>
+                                <p>{{ stb.description }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

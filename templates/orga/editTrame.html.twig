@@ -1,0 +1,12 @@
+{% extends "orga/orga.base.html.twig" %}
+
+{% block content %}
+    <h1>Modifier une Trame</h1>
+
+    {{ form_start(form) }}
+    <button type="submit" class="btn btn-success">Enregistrer</button>
+    {{ form_row(form.name, {'label': "Nom", 'attr':{'placeholder': trame.name}})}}
+    {{ form_row(form.description, {'label': "Description", 'attr':{'placeholder': trame.description}})}}
+    {{ form_end(form) }}
+
+{% endblock %}

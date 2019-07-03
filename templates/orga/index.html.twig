@@ -1,0 +1,27 @@
+{% extends 'orga/orga.base.html.twig' %}
+
+{% block title %}Liste des Evenements
+{% endblock %}
+
+{% block content %}
+    <h2>Liste des Evenements</h2>
+    <a href="{{ path('new_event') }}" class="btn btn-primary">Nouveau</a>
+
+    {% for event in events %}
+        <div class="card" style="width: 18rem; margin-bottom: 2rem;">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ path('view_event', {'id' : event.id}) }}">{{ event.name }}</a></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Le {{ event.date | date('d m Y') }} à {{ event.location }}</h6>
+                <p class="card-text">{{ event.description }}</p>
+                {% if event.locked == "" %}
+                    <a href="{{ path('edit_event', {'id' : event.id}) }}" class="btn btn-primary">Modifier</a>
+                {% elseif event.locked == app.user.username %}
+                    <a href="{{ path('edit_event', {'id' : event.id}) }}" class="btn btn-primary">Modifier <i class="fas fa-lock"></i> ({{ app.user.username }})</a>
+                {% else %}
+                    <a href="#" class="btn btn-primary disabled">Modifier <i class="fas fa-lock"></i> ({{ app.user.username }})</a>
+                {% endif %}
+                
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
