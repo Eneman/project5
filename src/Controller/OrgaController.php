@@ -39,6 +39,31 @@ class OrgaController extends AbstractController
             'new' => true
         ]);
     }
+    
+    /**
+     * @Route("/orga/trame/new/{eventId}", name="new_trame")
+     */
+    public function createTrame($eventId ,Request $request, ObjectManager $manager, GNEventRepository $repo)
+    {
+        $trame = new Trame();
+        $event = $repo->find($eventId);
+        $trame->setGnevent($event);
+        $form = $this->createForm(TrameType::class, $trame);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($trame);
+            $manager->flush();
+            return $this->redirectToRoute('view_event', ["id" => $trame->getGnevent()->getId()]);
+        }
+
+        return $this->render('orga/editTrame.html.twig', [
+            'trame' => $trame,
+            'form' => $form->createView(),
+            'new' => true
+        ]);
+    }
 
     /**
      * @Route("/orga", name="orga")
@@ -123,7 +148,7 @@ class OrgaController extends AbstractController
                 $trame->setLocked(null);
                 $manager->persist($trame);
                 $manager->flush();
-                return $this->redirectToRoute('orga');
+                return $this->redirectToRoute('view_event', ['id' => $trame->getGnevent()->getId()]);
             }
 
             return $this->render('orga/editTrame.html.twig', [

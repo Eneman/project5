@@ -4,9 +4,28 @@
     <h1>Modifier une Trame</h1>
 
     {{ form_start(form) }}
-    <button type="submit" class="btn btn-success">Enregistrer</button>
+    <button class="btn btn-success" type="submit">Enregistrer</button>
     {{ form_row(form.name, {'label': "Nom", 'attr':{'placeholder': trame.name}})}}
+    {{ form_row(form.orga, {'label': "Organisateur Referent", 'attr':{'placeholder': trame.orga}})}}
+    {{ form_row(form.type, {'label': "Type de Trame", 'attr':{'placeholder': trame.type}})}}
     {{ form_row(form.description, {'label': "Description", 'attr':{'placeholder': trame.description}})}}
+    {{ form_row(form.matos, {'label': "Matos", 'attr':{'placeholder': trame.matos}})}}
+
+    <h2>ScenarToBack</h2>
+    <ul class="stbs" data-prototype="{{ form_widget(form.stbs.vars.prototype)|e('html_attr') }}">
+        {% for stb in form.stbs %}
+            <ul class="stbs">
+                <li>
+                    <div class="stb card" style="width: 18rem; margin-bottom: 2rem;">
+                            {{ form_row(stb.name) }}
+                            {{ form_row(stb.characters) }}
+                            {{ form_row(stb.description) }}
+                    </div>
+                </li>
+            </ul>
+        {% endfor %}
+    </ul>
+
     {{ form_end(form) }}
 
 {% endblock %}

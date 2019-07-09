@@ -10,6 +10,7 @@
                 {% endif %}
                 <a class="nav-item nav-link {{ active }}" data-toggle="tab" href="#trame-{{ trame.id }}-content" id="trame-{{ trame.id }}-tab" role="tab">{{ trame.name }}</a>
             {% endfor %}
+                <a class="nav-item nav-link"  href="{{ path('new_trame', {'eventId' : event.id}) }}" id="new-trame" role="tab">+</a>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">

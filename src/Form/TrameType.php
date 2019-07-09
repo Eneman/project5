@@ -19,7 +19,8 @@ class TrameType extends AbstractType
             ->add('description')
             ->add('matos')
             ->add('stbs', CollectionType::class, [
-                'entry_type' => StbType::class
+                'entry_type' => StbType::class,
+                'allow_add' => true
             ])
         ;
     }
