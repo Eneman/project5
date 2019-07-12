@@ -96,9 +96,8 @@ class User implements UserInterface
     public function getSalt() {}
 
     public function getRoles(): array {
-        /* $roles = $this->roles;
-        return array_unique($roles); */
-        return ['ROLE_ADMIN'];
+        $roles = $this->roles;
+        return array_unique($roles);
     }
     
     public function setRoles(array $roles): self

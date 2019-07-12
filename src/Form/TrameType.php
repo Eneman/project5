@@ -20,7 +20,8 @@ class TrameType extends AbstractType
             ->add('matos')
             ->add('stbs', CollectionType::class, [
                 'entry_type' => StbType::class,
-                'allow_add' => true
+                'allow_add' => true,
+                'by_reference' => false
             ])
         ;
     }

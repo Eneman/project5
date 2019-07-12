@@ -44,7 +44,7 @@ class Trame
     private $matos;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Stb", mappedBy="trame", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Stb", mappedBy="trame", orphanRemoval=true, cascade={"persist"})
      */
     private $stbs;
 

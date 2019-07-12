@@ -14,7 +14,7 @@
     <h2>ScenarToBack</h2>
     <ul class="stbs" data-prototype="{{ form_widget(form.stbs.vars.prototype)|e('html_attr') }}">
         {% for stb in form.stbs %}
-            <ul class="stbs">
+            
                 <li>
                     <div class="stb card" style="width: 18rem; margin-bottom: 2rem;">
                             {{ form_row(stb.name) }}
@@ -22,10 +22,14 @@
                             {{ form_row(stb.description) }}
                     </div>
                 </li>
-            </ul>
+            
         {% endfor %}
     </ul>
 
     {{ form_end(form) }}
 
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('forms') }}
+    {% endblock %}
 {% endblock %}
