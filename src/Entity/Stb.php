@@ -21,10 +21,7 @@ class Stb
      */
     private $name;
 
-    /**
-     * @ORM\Column(type="array")
-     */
-    private $characters = [];
+
 
     /**
      * @ORM\Column(type="text")

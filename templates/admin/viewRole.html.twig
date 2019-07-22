@@ -8,6 +8,7 @@
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Rôle</th>
+                <th scope="col">Changer le rôle</th>
             </tr>
         </thead>
         <tbody>
@@ -16,18 +17,25 @@
                     <th scope="row">{{ user.id }}</th>
                     <td>{{ user.username }}</td>
                     <td>{{ user.mail }}</td>
-                    {% if user.roles %}
-                        {% if user.roles[0] == 'ROLE_ADMIN' %}
-                            <td>Administrateur</td>
-                        {% elseif user.roles[0] == 'ROLE_ORGA' %}
-                            <td>Organisateur</td>
-                        {% else %}
-                            <td>Utilisateur</td>
-                        {% endif  %}
+
+                    {% if user.roles[0] == 'ROLE_ADMIN' %}
+                        <td id="role_{{ user.id }}">Administrateur</td>
+                    {% elseif user.roles[0] == 'ROLE_ORGA' %}
+                        <td id="role_{{ user.id }}">Organisateur</td>
+                    {% elseif user.roles[0] == 'ROLE_USER' %}
+                        <td id="role_{{ user.id }}">Utilisateur</td>
                     {% else %}
                         <td>Pas de Rôle</td>
                     {% endif %}
-                    <td></td>
+                    <td id="{{ user.id }}">
+                        <button class="btn btn-success" onclick="Promote(this.parentElement.id)">
+                            <i class="fas fa-arrow-up"></i>
+                        </button>
+                        /
+                        <button class="btn btn-danger" onclick="Demote(this.parentElement.id)">
+                            <i class="fas fa-arrow-down"></i>
+                        </button>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
