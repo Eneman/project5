@@ -18,7 +18,7 @@
                 <li>
                     <div class="stb card" style="width: 18rem; margin-bottom: 2rem;">
                             {{ form_row(stb.name) }}
-                            {{ form_row(stb.characters) }}
+                            {{ form_row(stb.players) }}
                             {{ form_row(stb.description) }}
                     </div>
                 </li>
@@ -27,9 +27,5 @@
     </ul>
 
     {{ form_end(form) }}
-
-    {% block javascripts %}
-        {{ parent() }}
-        {{ encore_entry_script_tags('forms') }}
-    {% endblock %}
+    
 {% endblock %}

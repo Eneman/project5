@@ -6,6 +6,8 @@ use App\Entity\Stb;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Player;
 
 class StbType extends AbstractType
 {
@@ -13,7 +15,12 @@ class StbType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('characters')
+            ->add('players', EntityType::class,[
+                'class' => Player::class,
+                'choice_label' => 'name',
+                'attr' => ['class' => 'choicejs'],
+                'multiple' => true
+            ])
             ->add('description')
         ;
     }
