@@ -1,0 +1,17 @@
+<html>
+    <body>
+        <h1>{{ event.name }}</h1>
+        {% for trame in event.trames %}
+            <h3>{{ trame.name }}</h3>
+            <p>Orga :
+                {{ trame.orga }}</p>
+            <p>Type :
+                {{ trame.type }}</p>
+            <p>Matos :
+                {{ trame.matos }}</p>
+            <p>Description :
+                {{ trame.description }}</p>
+            <hr>
+        {% endfor %}
+    </body>
+</html>

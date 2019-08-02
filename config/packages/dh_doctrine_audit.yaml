@@ -1,0 +1,6 @@
+dh_doctrine_audit:
+    # Configuration reference available at:
+    # https://github.com/DamienHarper/DoctrineAuditBundle#configuration
+
+    entities:
+        Entity\Trame: ~  

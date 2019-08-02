@@ -20,6 +20,9 @@
                 {% else %}
                     <a href="#" class="btn btn-primary disabled">Modifier <i class="fas fa-lock"></i> ({{ app.user.username }})</a>
                 {% endif %}
+                <a href="{{ path('generate_scenario', {'id' : event.id}) }}" class=" btn btn-primary">Generer Scenario</a>
+                <a href="{{ path('generate_stb', {'id' : event.id}) }}" class=" btn btn-primary">Generer StB</a>
+                <a href="{{ path('generate_matos', {'id' : event.id}) }}" class=" btn btn-primary">Generer Matos</a>
                 
             </div>
         </div>

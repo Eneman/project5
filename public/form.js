@@ -9,7 +9,7 @@ $(document).ready(function() {
 
     addStbButton.on('click', function(e) {
         addStbForm(collectionHolder, newLinkLi);
-        updateChoices('.choicejs');
+        updateChoices('.choicejs.new');
     })
 })
 
@@ -34,6 +34,7 @@ function addStbForm($collectionHolder, $newLinkLi) {
     $collectionHolder.data('index', index + 1);
 
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<li></li>').append(newForm);
+    var $newFormDiv = $('<div class="stb card" style="width: 18rem; margin-bottom: 2rem;"></div>').append(newForm)
+    var $newFormLi = $('<li></li>').append($newFormDiv);
     $newLinkLi.before($newFormLi);
 }

@@ -3,3 +3,7 @@
 #    controller: App\Controller\DefaultController::index
 
 # the "app_lucky_number" route name is not important yet
+
+dh_doctrine_audit:
+    resource: "@DHDoctrineAuditBundle/Controller/"
+    type: annotation

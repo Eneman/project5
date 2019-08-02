@@ -18,7 +18,7 @@ class StbType extends AbstractType
             ->add('players', EntityType::class,[
                 'class' => Player::class,
                 'choice_label' => 'name',
-                'attr' => ['class' => 'choicejs'],
+                'attr' => ['class' => 'choicejs new'],
                 'multiple' => true
             ])
             ->add('description')

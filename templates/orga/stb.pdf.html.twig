@@ -1,0 +1,33 @@
+<html>
+    <body>
+        <h1>{{ event.name }}</h1>
+        {% for trame in event.trames %}
+            <h3>{{ trame.name }}</h3>
+            <p>Orga :
+                {{ trame.orga }}</p>
+            <p>Type :
+                {{ trame.type }}</p>
+            <p>Description :
+                {{ trame.description }}</p>
+            <div>
+                <h4>ScenarToBack</h4>
+                {% for stb in trame.stbs %}
+
+                    <div style="border: 2px solid black">
+                        <h5>{{ stb.name }}</h5>
+                        <h6>Personnages</h6>
+                        <ul>
+                            {% for char in stb.players %}
+                                <li>{{ char.name }}</li>
+                            {% endfor %}
+                        </ul>
+                        <h6>Description</h6>
+                        <p>{{ stb.description }}</p>
+                    </div>
+
+                {% endfor %}
+            </div>
+            <hr>
+        {% endfor %}
+    </body>
+</html>

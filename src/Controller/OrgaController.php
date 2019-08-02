@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use App\Entity\Trame;
 use App\Entity\GNEvent;
+use App\Form\TrameType;
 use App\Form\GNEventType;
 use App\Repository\TrameRepository;
 use App\Repository\GNEventRepository;
@@ -11,8 +15,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\Trame;
-use App\Form\TrameType;
 
 class OrgaController extends AbstractController
 {
@@ -97,7 +99,8 @@ class OrgaController extends AbstractController
 
             return $this->render('orga/editEvent.html.twig', [
                 'event' => $event,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'new' => false
             ]);
         } elseif ($event->getLocked() == $user->getUsername()) {
             $form->handleRequest($request);
@@ -111,7 +114,8 @@ class OrgaController extends AbstractController
 
             return $this->render('orga/editEvent.html.twig', [
                 'event' => $event,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'new' => false
             ]);
         } else {
             return $this->redirectToRoute('orga');
@@ -181,6 +185,70 @@ class OrgaController extends AbstractController
 
         return $this->render('orga/viewTrame.html.twig', [
             'trame' => $trame
+        ]);
+    }
+    
+    /**
+     * @Route("orga/gen/scenario/{id}", name="generate_scenario")
+     */
+
+    public function generateScenario(GNEvent $event)
+    {
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        $dompdf = new Dompdf($pdfOptions);
+        $html = $this->renderView('orga/scenario.pdf.html.twig', [
+            'event' => $event
+        ]);
+
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+
+        $dompdf->stream("Scenar.pdf", [
+            'Attachment' => true
+        ]);
+    }
+    /**
+     * @Route("orga/gen/stb/{id}", name="generate_stb")
+     */
+
+    public function generateStb(GNEvent $event)
+    {
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        $dompdf = new Dompdf($pdfOptions);
+        $html = $this->renderView('orga/stb.pdf.html.twig', [
+            'event' => $event
+        ]);
+
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+
+        $dompdf->stream("Scenar.pdf", [
+            'Attachment' => true
+        ]);
+    }
+    /**
+     * @Route("orga/gen/matos/{id}", name="generate_matos")
+     */
+
+    public function generateMatos(GNEvent $event)
+    {
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        $dompdf = new Dompdf($pdfOptions);
+        $html = $this->renderView('orga/matos.pdf.html.twig', [
+            'event' => $event
+        ]);
+
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+
+        $dompdf->stream("Scenar.pdf", [
+            'Attachment' => true
         ]);
     }
 }

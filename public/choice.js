@@ -31,5 +31,6 @@ function updateChoices(sel)
           noChoices: 'has-no-choices'
         }
     });
+    $('.choicejs.new').removeClass('new')
 }
-updateChoices('.choicejs');
+updateChoices('.choicejs.new');
