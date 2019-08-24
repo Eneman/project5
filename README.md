@@ -1,8 +1,8 @@
 # Hallapandur
 
 ## A Propos
+This app is used to organize events for the Hallapandur organization
 
-This app is used to organize event for the Hallapandur association
 ## Installation
 1. Clone or Download the repo
 2. Install composer and execute `composer install` in the project folder
