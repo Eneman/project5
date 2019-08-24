@@ -165,6 +165,32 @@ class OrgaController extends AbstractController
     }
 
     /**
+     * @Route("orga/trame/delete/{id}", name="delete_trame")
+     */
+
+    public function deleteTrame(Trame $trame, ObjectManager $manager)
+    {
+        $id = $trame->getGnevent()->getId();
+
+        $manager->remove($trame);
+        $manager->flush();
+        
+        return $this->redirectToRoute('view_event', ['id' => $id]);
+    }
+
+    /**
+     * @Route("orga/event/delete/{id}", name="delete_event")
+     */
+
+    public function deleteEvent(GNEvent $event, ObjectManager $manager)
+    {
+        $manager->remove($event);
+        $manager->flush();
+        
+        return $this->redirectToRoute('orga');
+    }
+
+    /**
      * @Route("orga/event/{id}", name="view_event")
      */
 

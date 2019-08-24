@@ -25,7 +25,7 @@ final class Version20190722101323 extends AbstractMigration
         $this->addSql('ALTER TABLE gnevent CHANGE locked locked VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE trame CHANGE locked locked VARCHAR(255) DEFAULT NULL');
         $this->addSql('ALTER TABLE user CHANGE roles roles JSON NOT NULL');
-        $this->addSql('ALTER TABLE stb DROP characters');
+
     }
 
     public function down(Schema $schema) : void

@@ -39,8 +39,7 @@ class EventFixtures extends Fixture
                 for ($k = 0; $k < 10; $k++)
                 {
                     $scenarToBack = new Stb();
-                    $scenarToBack->setCharacters(array("Bernard", "Claude", "Jean-Yves"))
-                                 ->setDescription("Tres beau ScnarToBack")
+                    $scenarToBack->setDescription("Tres beau ScnarToBack")
                                  ->setName("La quete de machin")
                                  ->setTrame($trame);
                     

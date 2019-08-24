@@ -2,7 +2,7 @@
 
 {% block content %}
     <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <div class="trames_tabs nav nav-tabs mt-3 " id="nav-tab" role="tablist">
             {% for trame in event.trames %}
                 {% set active = '' %}
                 {% if loop.index0 == 0 %}
@@ -19,29 +19,33 @@
             {% if loop.index0 == 0 %}
                 {% set active = 'show active' %}
             {% endif %}
-            <div class="tab-pane fade {{ active }}" id="trame-{{ trame.id }}-content" role="tabpanel">
-                <h3>{{ trame.name }}</h3>
-                {% if trame.locked == "" %}
-                    <a href="{{ path('edit_trame', {'id' : trame.id}) }}" class="btn btn-primary">Modifier</a>
-                {% elseif trame.locked == app.user.username %}
-                    <a href="{{ path('edit_trame', {'id' : trame.id}) }}" class="btn btn-primary">Modifier <i class="fas fa-lock"></i> ({{ app.user.username }})</a>
-                {% else %}
-                    <a href="#" class="btn btn-primary disabled">Modifier <i class="fas fa-lock"></i> ({{ app.user.username }})</a>
-                {% endif %}
-                <p>Orga :
-                    {{ trame.orga }}</p>
-                <p>Type :
-                    {{ trame.type }}</p>
-                <p>Matos :
-                    {{ trame.matos }}</p>
-                <p>Description :
+            <div class=" border rounded bg-light tab-pane fade {{ active }}" id="trame-{{ trame.id }}-content" role="tabpanel">
+                <h3 class="text-center">{{ trame.name }}</h3>
+                <div class="wrapper text-center">
+                    <div class="btn-group">
+                        {% if trame.locked == "" %}
+                            <a href="{{ path('edit_trame', {'id' : trame.id}) }}" class="btn btn-primary">Modifier</a>
+                            <a href="{{ path('delete_trame', {'id' : trame.id}) }}" class="btn btn-danger">Supprimer</a>
+                        {% elseif trame.locked == app.user.username %}
+                            <a href="{{ path('edit_trame', {'id' : trame.id}) }}" class="btn btn-primary">Modifier <i class="fas fa-lock"></i> ({{ app.user.username }})</a>
+                            <a href="{{ path('delete_trame', {'id' : trame.id}) }}" class="btn btn-danger">Supprimer <i class="fas fa-lock"></i> ({{ app.user.username }})</a>
+                        {% else %}
+                            <a href="#" class="btn btn-primary disabled">Modifier <i class="fas fa-lock"></i> ({{ app.user.username }})</a>
+                            <a href="#" class="btn btn-danger disabled">Supprimer <i class="fas fa-lock"></i> ({{ app.user.username }})</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <p class="font-weight-bold">Organisateur : <span class="font-weight-normal">{{ trame.orga }}</span></p>
+                <p class="font-weight-bold">Type de trame : <span class="font-weight-normal">{{ trame.type }}</span></p>
+                <p class="font-weight-bold">Materiel : <span class="font-weight-normal">{{ trame.matos }}</span></p>
+                <p class="font-weight-bold">Description :
                     {{ trame.description }}</p>
                 <div>
                     <h4>ScenarToBack</h4>
                     {% for stb in trame.stbs %}
 
-                        <div style="border: 2px solid black">
-                            <h5>{{ stb.name }}</h5>
+                        <div class="stb bg-white rounded shadow">
+                            <h5 class="text-center">{{ stb.name }}</h5>
                             <h6>Personnages</h6>
                             <ul>
                                 {% for char in stb.players %}

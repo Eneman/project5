@@ -1,0 +1,9 @@
+// Your variable overrides
+$primary: #36506e;
+$secondary: #436296;
+$body-bg: #d3dbe2;
+$danger: rgb(143, 64, 64);
+// Bootstrap and its default variables
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "main.scss";
+
