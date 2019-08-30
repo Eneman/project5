@@ -1,0 +1,11 @@
+{% extends 'home/home.base.html.twig' %}
+
+{% block title %}{{ post.title}}
+{% endblock %}
+
+{% block content %}
+    <h2 class="mt-5">{{ post.title }}</h2>
+    <p class="text-muted">Posté le {{ post.date | date('d/m/y') }}</p>
+
+    <p>{{ post.content }}</p>
+{% endblock %}

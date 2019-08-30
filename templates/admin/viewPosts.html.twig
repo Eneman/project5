@@ -1,0 +1,26 @@
+{% extends 'admin/admin.base.html.twig' %}
+
+{% block title %}Liste des Articles
+{% endblock %}
+
+{% block content %}
+    <a href="{{ path('new_post') }}" class="btn btn-primary btn-lg btn-block mb-3">Nouvel Article</a>
+    {% for row in posts|batch(2) %}
+    <div class="row">
+        {% for post in row %}
+        <div class="col-sm-6">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{{ path('view_post', {'id' : post.id}) }}">{{ post.title }}</a></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Posté le {{ post.date | date('d m Y') }}</h6>
+                        <p class="card-text">{{ post.content|length > 50 ? post.content|slice(0, 50) ~ '...' : post.content }}</p>
+                        <div class="btn-group">
+                            <a class="btn btn-primary" href="{{ path('edit_post', {'id' : post.id}) }}">Editer l'Article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+{% endblock %}

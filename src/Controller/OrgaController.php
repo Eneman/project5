@@ -25,7 +25,7 @@ class OrgaController extends AbstractController
     public function createEvent(Request $request, ObjectManager $manager)
     {
         $event = new GNEvent();
-        $form = $this->createForm(GNEventType::class, $event);
+        $form = $this->createForm(GNEventType::class, $event, User);
 
         $form->handleRequest($request);
 

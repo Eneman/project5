@@ -10561,9 +10561,10 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
-h2 {
-  margin-top: 2em;
-  margin-bottom: 2em;
+.page-title {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: 2.5em;
 }
 
 #new_event {

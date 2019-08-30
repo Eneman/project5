@@ -4,14 +4,14 @@
 {% endblock %}
 
 {% block content %}
-    <h2 class="text-center">Liste des Evenements</h2>
+    <h2 class="text-center page-title">Liste des Evenements</h2>
     <a href="{{ path('new_event') }}" id="new_event" class="btn btn-primary btn-lg btn-block">Créer un Evenement</a>
 
     {% for row in events|batch(2) %}
     <div class="row">
         {% for event in row %}
             <div class="col-sm-6">
-                <div class="card" style="margin-bottom: 2rem;">
+                <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title"><a href="{{ path('view_event', {'id' : event.id}) }}">{{ event.name }}</a></h5>
                         <h6 class="card-subtitle mb-2 text-muted">Le {{ event.date | date('d m Y') }} à {{ event.location }}</h6>

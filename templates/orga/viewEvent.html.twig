@@ -2,13 +2,13 @@
 
 {% block content %}
     <nav>
-        <div class="trames_tabs nav nav-tabs mt-3 " id="nav-tab" role="tablist">
+        <div class="trames_tabs nav nav-tabs mt-3 bg-light border-0 rounded-top" id="nav-tab" role="tablist">
             {% for trame in event.trames %}
                 {% set active = '' %}
                 {% if loop.index0 == 0 %}
                     {% set active = 'active' %}
                 {% endif %}
-                <a class="nav-item nav-link {{ active }}" data-toggle="tab" href="#trame-{{ trame.id }}-content" id="trame-{{ trame.id }}-tab" role="tab">{{ trame.name }}</a>
+                <a class="border-0 nav-item nav-link {{ active }}" data-toggle="tab" href="#trame-{{ trame.id }}-content" id="trame-{{ trame.id }}-tab" role="tab">{{ trame.name }}</a>
             {% endfor %}
                 <a class="nav-item nav-link"  href="{{ path('new_trame', {'eventId' : event.id}) }}" id="new-trame" role="tab">+</a>
         </div>
@@ -19,7 +19,7 @@
             {% if loop.index0 == 0 %}
                 {% set active = 'show active' %}
             {% endif %}
-            <div class=" border rounded bg-light tab-pane fade {{ active }}" id="trame-{{ trame.id }}-content" role="tabpanel">
+            <div class=" rounded-bottom bg-light tab-pane fade {{ active }} pl-2" id="trame-{{ trame.id }}-content" role="tabpanel">
                 <h3 class="text-center">{{ trame.name }}</h3>
                 <div class="wrapper text-center">
                     <div class="btn-group">
@@ -40,7 +40,7 @@
                 <p class="font-weight-bold">Materiel : <span class="font-weight-normal">{{ trame.matos }}</span></p>
                 <p class="font-weight-bold">Description :
                     {{ trame.description }}</p>
-                <div>
+                <div class=" pb-2">
                     <h4>ScenarToBack</h4>
                     {% for stb in trame.stbs %}
 

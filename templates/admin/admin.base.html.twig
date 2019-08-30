@@ -1,7 +1,8 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <ul class="nav flex-column" style="width: fit-content; margin: 0 !important">
+<nav class="nav navbar-dark bg-dark d-flex justify-content-center mb-2">
+    <ul class="navbar-nav nav" >
         <li class="nav-item">
             <a class="nav-link" href="{{ path('view_role') }}">Utilisateurs</a>
         </li>
@@ -9,11 +10,12 @@
             <a class="nav-link" href="{{ path('view_players') }}">Personnages</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="{{ path('view_posts') }}">Articles</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Disabled</a>
         </li>
     </ul>
+</nav>
     {% block content %}{% endblock %}
 {% endblock %}

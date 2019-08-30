@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
+use App\Entity\Player;
+use App\Form\PostType;
 use App\Form\PlayerType;
 use App\Entity\User as AppUser;
+use App\Repository\PostRepository;
 use App\Repository\UserRepository;
 use App\Repository\PlayerRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +15,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\Player;
 
 class AdminController extends AbstractController
 {
@@ -118,5 +121,63 @@ class AdminController extends AbstractController
         $manager->flush();
 
         return $this->json(['role' => $user->getRoles()[0]], 200);
+    }
+
+    /**
+     * @Route("/admin/create/post", name="new_post")
+     */
+    public function createPost(Request $request, ObjectManager $manager)
+    {
+        $post = new Post();
+        $post->setDate(new \DateTime());
+        $form = $this->createForm(PostType::class, $post,);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($post);
+            $manager->flush();
+            return $this->redirectToRoute('view_post', ["id" => $post->getId()]);
+        }
+
+        return $this->render('admin/editPost.html.twig', [
+            'post' => $post,
+            'form' => $form->createView(),
+            'new' => true
+        ]);
+    }
+
+    /**
+     * @Route("/admin/posts", name="view_posts")
+     */
+    public function viewPosts(PostRepository $repo)
+    {
+
+        $posts = $repo->findAll();
+        return $this->render('admin/viewPosts.html.twig', [
+            'posts' => $posts,
+        ]);
+    }
+
+    /**
+     * @Route("admin/post/{id}/edit", name="edit_post")
+     */
+    public function editPost(Post $post = null, Request $request, ObjectManager $manager)
+    {
+        $form = $this->createForm(PostType::class, $post,);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($post);
+            $manager->flush();
+            return $this->redirectToRoute('view_post', ["id" => $post->getId()]);
+        }
+
+        return $this->render('admin/editPost.html.twig', [
+            'post' => $post,
+            'form' => $form->createView(),
+            'new' => false
+        ]);
     }
 }
