@@ -39,7 +39,7 @@
                 <p class="font-weight-bold">Type de trame : <span class="font-weight-normal">{{ trame.type }}</span></p>
                 <p class="font-weight-bold">Materiel : <span class="font-weight-normal">{{ trame.matos }}</span></p>
                 <p class="font-weight-bold">Description :
-                    {{ trame.description }}</p>
+                    {{ trame.description | raw }}</p>
                 <div class=" pb-2">
                     <h4>ScenarToBack</h4>
                     {% for stb in trame.stbs %}

@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class TrameType extends AbstractType
 {
@@ -16,11 +17,12 @@ class TrameType extends AbstractType
             ->add('name')
             ->add('type')
             ->add('orga')
-            ->add('description')
+            ->add('description', CKEditorType::class)
             ->add('matos')
             ->add('stbs', CollectionType::class, [
                 'entry_type' => StbType::class,
                 'allow_add' => true,
+                'allow_delete' => true,
                 'by_reference' => false
             ])
         ;

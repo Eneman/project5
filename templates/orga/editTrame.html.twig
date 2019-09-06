@@ -12,11 +12,11 @@
     {{ form_row(form.matos, {'label': "Matos", 'attr':{'placeholder': trame.matos}})}}
 
     <h2>ScenarToBack</h2>
-    <ul class="stbs" data-prototype="{{ form_widget(form.stbs.vars.prototype)|e('html_attr') }}">
+    <ul class="stbs list-group" data-prototype="{{ form_widget(form.stbs.vars.prototype)|e('html_attr') }}">
         {% for stb in form.stbs %}
             
-                <li>
-                    <div class="stb card" style="width: 18rem; margin-bottom: 2rem;">
+                <li class="list-group-item mb-3 rounded">
+                    <div class="stb card border-0 p-0 m-0">
                             {{ form_row(stb.name) }}
                             {{ form_row(stb.players) }}
                             {{ form_row(stb.description) }}

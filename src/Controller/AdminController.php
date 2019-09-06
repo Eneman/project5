@@ -180,4 +180,16 @@ class AdminController extends AbstractController
             'new' => false
         ]);
     }
+
+    /**
+     * @Route("admin/post/delete/{id}", name="delete_post")
+     */
+
+    public function deletePost(Post $post, ObjectManager $manager)
+    {
+        $manager->remove($post);
+        $manager->flush();
+        
+        return $this->redirectToRoute('view_posts');
+    }
 }

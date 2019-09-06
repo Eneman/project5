@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <title>
@@ -14,8 +14,10 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-            <a class="navbar-brand" href="/">Hallapandur</a>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-3 pt-0 pb-0">
+            <a class="navbar-brand p-0" href="/">
+                <img src="/logo_white.svg" height="70" alt="">
+            </a>
             <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor01" data-toggle="collapse" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,8 +25,14 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('admin') }}">Admin</a>
+                        <li class="nav-item dropdown">
+                            <a aria-expanded="false" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown">Administration</a>
+                            <div class="dropdown-menu bg-dark border-0">
+                                <a class="dropdown-item text-light" href="{{ path('view_role') }}">Utilisateurs</a>
+                                <a class="dropdown-item text-light" href="{{ path('view_players') }}">Personnages</a>
+                                <a class="dropdown-item text-light" href="{{ path('view_posts') }}">Articles</a>
+                                <a class="dropdown-item text-light" href="#">Securité</a>
+                            </div>
                         </li>
                     {% endif %}
                     {% if is_granted('ROLE_ORGA') %}
@@ -52,6 +60,7 @@
                 </ul>
             </div>
         </nav>
+
         <div class="container"> {% block body %}{% endblock %}
             </div>
             {% block javascripts %}

@@ -1,9 +1,12 @@
 var collectionHolder;
-var addStbButton = $('<button type="button" class="add_stb_link btn btn-success">Ajouter Stb</button>');
-var newLinkLi = $('<li></li>').append(addStbButton);
+var addStbButton = $('<button type="button" class="add_stb_link btn btn-primary btn-block">Ajouter Stb</button>');
+var newLinkLi = $('<li class="list-group-item mb-3 bg-transparent border-0"></li>').append(addStbButton);
 
 $(document).ready(function() {
     collectionHolder = $('ul.stbs');
+    collectionHolder.find('div.stb.card').each(function() {
+        addStbFormDeleteLink($(this));
+    });
     collectionHolder.append(newLinkLi);
     collectionHolder.data('index', collectionHolder.find(':input').length);
 
@@ -34,7 +37,18 @@ function addStbForm($collectionHolder, $newLinkLi) {
     $collectionHolder.data('index', index + 1);
 
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormDiv = $('<div class="stb card" style="width: 18rem; margin-bottom: 2rem;"></div>').append(newForm)
-    var $newFormLi = $('<li></li>').append($newFormDiv);
+    var $newFormDiv = $('<div class="stb card border-0 p-0 m-0"></div>').append(newForm)
+    var $newFormLi = $('<li class="list-group-item mb-3 rounded"></li>').append($newFormDiv);
     $newLinkLi.before($newFormLi);
+    addStbFormDeleteLink($newFormLi);
+}
+
+function addStbFormDeleteLink($stbFormLi) {
+    var $removeFormButton = $('<button type="button" class="btn btn-danger btn-block">Supprimer</button>');
+    $stbFormLi.append($removeFormButton);
+
+    $removeFormButton.on('click', function(e) {
+        // remove the li for the tag form
+        $stbFormLi.remove();
+    });
 }

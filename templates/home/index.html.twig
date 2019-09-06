@@ -11,9 +11,9 @@
         <div class="col-sm-6">
                 <div class="card" style="margin-bottom: 2rem;">
                     <div class="card-body">
-                        <h5 class="card-title"><a href="{{ path('view_post', {'id' : post.id}) }}">{{ post.title }}</a></h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Posté le {{ post.date | date('d/m/Y') }}</h6>
-                        <p class="card-text">{{ post.content|length > 50 ? post.content|slice(0, 50) ~ ' ...' : post.content }}</p>
+                        <h5 class="text-center card-title"><a href="{{ path('view_post', {'id' : post.id}) }}">{{ post.title }}</a></h5>
+                        <h6 class="text-center card-subtitle mb-3 text-muted">Posté le {{ post.date | date('d/m/Y') }}</h6>
+                        <p class="card-text">{{ (post.content|length > 50 ? post.content|slice(0, 50) ~ ' ...' : post.content) | raw }}</p>
                     </div>
                 </div>
             </div>

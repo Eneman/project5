@@ -6,6 +6,7 @@ use App\Entity\GNEvent;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class GNEventType extends AbstractType
 {
@@ -13,7 +14,7 @@ class GNEventType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')
+            ->add('description', CKEditorType::class)
             ->add('date')
             ->add('location')
         ;

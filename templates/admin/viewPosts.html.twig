@@ -13,9 +13,10 @@
                     <div class="card-body">
                         <h5 class="card-title"><a href="{{ path('view_post', {'id' : post.id}) }}">{{ post.title }}</a></h5>
                         <h6 class="card-subtitle mb-2 text-muted">Posté le {{ post.date | date('d m Y') }}</h6>
-                        <p class="card-text">{{ post.content|length > 50 ? post.content|slice(0, 50) ~ '...' : post.content }}</p>
+                        <p class="card-text">{{ (post.content|length > 50 ? post.content|slice(0, 50) ~ '...' : post.content) | raw }}</p>
                         <div class="btn-group">
-                            <a class="btn btn-primary" href="{{ path('edit_post', {'id' : post.id}) }}">Editer l'Article</a>
+                            <a class="btn btn-primary" href="{{ path('edit_post', {'id' : post.id}) }}">Editer</a>
+                            <a class="btn btn-danger" href="{{ path('delete_post', {'id' : post.id}) }}">Supprimer</a>
                         </div>
                     </div>
                 </div>
