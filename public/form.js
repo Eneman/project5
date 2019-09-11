@@ -5,7 +5,7 @@ var newLinkLi = $('<li class="list-group-item mb-3 bg-transparent border-0"></li
 $(document).ready(function() {
     collectionHolder = $('ul.stbs');
     collectionHolder.find('div.stb.card').each(function() {
-        addStbFormDeleteLink($(this));
+        addStbFormDeleteLink($(this).parent());
     });
     collectionHolder.append(newLinkLi);
     collectionHolder.data('index', collectionHolder.find(':input').length);
@@ -48,7 +48,9 @@ function addStbFormDeleteLink($stbFormLi) {
     $stbFormLi.append($removeFormButton);
 
     $removeFormButton.on('click', function(e) {
-        // remove the li for the tag form
-        $stbFormLi.remove();
+        if(confirm('Etes-vous sur de vouloir supprimer ce STB ?'))
+        {
+            $stbFormLi.remove();
+        }
     });
 }

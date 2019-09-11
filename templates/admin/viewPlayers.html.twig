@@ -1,9 +1,10 @@
 {% extends "admin/admin.base.html.twig" %}
 
 {% block content %}
+    <h2 class="page-title text-center">Personnages</h2>
     {{ form_start(form) }}
     {{ form_row(form.name, {'label': "Nouveau Personnage", 'attr':{'placeholder': 'Nom du Personnage'}})}}
-    <button class="btn btn-success" type="submit">Enregistrer</button>
+    <button class="btn btn-success mb-3" type="submit">Enregistrer</button>
     {{ form_end(form) }}
 
     <table class="table table-dark rounded">

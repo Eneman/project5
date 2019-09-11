@@ -27,11 +27,11 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item dropdown">
                             <a aria-expanded="false" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown">Administration</a>
-                            <div class="dropdown-menu bg-dark border-0">
-                                <a class="dropdown-item text-light" href="{{ path('view_role') }}">Utilisateurs</a>
-                                <a class="dropdown-item text-light" href="{{ path('view_players') }}">Personnages</a>
-                                <a class="dropdown-item text-light" href="{{ path('view_posts') }}">Articles</a>
-                                <a class="dropdown-item text-light" href="#">Securité</a>
+                            <div class="dropdown-menu border-0">
+                                <a class="dropdown-item" href="{{ path('view_role') }}">Utilisateurs</a>
+                                <a class="dropdown-item" href="{{ path('view_players') }}">Personnages</a>
+                                <a class="dropdown-item" href="{{ path('view_posts') }}">Articles</a>
+                                <a class="dropdown-item" href="#">Securité</a>
                             </div>
                         </li>
                     {% endif %}

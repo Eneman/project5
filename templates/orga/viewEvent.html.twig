@@ -19,7 +19,7 @@
             {% if loop.index0 == 0 %}
                 {% set active = 'show active' %}
             {% endif %}
-            <div class=" rounded-bottom bg-light tab-pane fade {{ active }} pl-2" id="trame-{{ trame.id }}-content" role="tabpanel">
+            <div class="px-3 rounded-bottom bg-light tab-pane fade {{ active }}" id="trame-{{ trame.id }}-content" role="tabpanel">
                 <h3 class="text-center">{{ trame.name }}</h3>
                 <div class="wrapper text-center">
                     <div class="btn-group">
@@ -38,8 +38,8 @@
                 <p class="font-weight-bold">Organisateur : <span class="font-weight-normal">{{ trame.orga }}</span></p>
                 <p class="font-weight-bold">Type de trame : <span class="font-weight-normal">{{ trame.type }}</span></p>
                 <p class="font-weight-bold">Materiel : <span class="font-weight-normal">{{ trame.matos }}</span></p>
-                <p class="font-weight-bold">Description :
-                    {{ trame.description | raw }}</p>
+                <p class="font-weight-bold mb-0">Description :</p>
+                {{ trame.description | raw }}
                 <div class=" pb-2">
                     <h4>ScenarToBack</h4>
                     {% for stb in trame.stbs %}
