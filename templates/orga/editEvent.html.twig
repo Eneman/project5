@@ -10,7 +10,7 @@
     {{ form_start(form) }}
     {{ form_row(form.name, {'label': "Nom", 'attr':{'placeholder': event.name}})}}
     {{ form_row(form.description, {'label': "Description", 'attr':{'placeholder': event.description}})}}
-    {{ form_row(form.location, {'label': "Lieu", 'attr':{'placeholder': event.location}})}}
+    {{ form_row(form.location, {'label': "Lieu", 'attr':{'placeholder': event.location}, 'required': true})}}
     {{ form_row(form.date, {'label': "Date"})}}
     <button class="btn btn-success" type="submit">Enregistrer</button>
     {{ form_end(form) }}

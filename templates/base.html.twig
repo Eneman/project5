@@ -2,6 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
             {% block title %}Welcome!
             {% endblock %}
@@ -31,18 +32,12 @@
                                 <a class="dropdown-item" href="{{ path('view_role') }}">Utilisateurs</a>
                                 <a class="dropdown-item" href="{{ path('view_players') }}">Personnages</a>
                                 <a class="dropdown-item" href="{{ path('view_posts') }}">Articles</a>
-                                <a class="dropdown-item" href="#">Securité</a>
                             </div>
                         </li>
                     {% endif %}
                     {% if is_granted('ROLE_ORGA') %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('orga') }}">Organisation</a>
-                        </li>
-                    {% endif %}
-                    {% if is_granted('ROLE_USER') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('user') }}">User</a>
                         </li>
                     {% endif %}
                     {% if not app.user %}
@@ -60,18 +55,14 @@
                 </ul>
             </div>
         </nav>
-
+        {% block pre_container %}{% endblock %}
         <div class="container"> {% block body %}{% endblock %}
             </div>
+
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script crossorigin="anonymous" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+            <script crossorigin="anonymous" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
             {% block javascripts %}
-                <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-                <script crossorigin="anonymous" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-                <script crossorigin="anonymous" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-                <script src="/role.js"></script>
-                <script src="/form.js"></script>
-                <script src="/choice.js"></script>
-                <script src="/trumbowyg.js"></script>
             {% endblock %}
         </body>
     </html>

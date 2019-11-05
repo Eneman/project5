@@ -2,31 +2,29 @@
 
 namespace App\Form;
 
-use App\Entity\GNEvent;
+use App\Entity\Slide;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class GNEventType extends AbstractType
+class SliderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description', CKEditorType::class, [
-                'input_sync' => true,
+            ->add('imageFile', VichImageType::class, [
+                'required' => true,
+                'download_label' => 'slider_image'
             ])
-            ->add('date')
-            ->add('location')
+            ->add('caption')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => GNEvent::class,
+            'data_class' => Slide::class,
         ]);
     }
 }

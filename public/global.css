@@ -10577,4 +10577,91 @@ a.text-dark:hover, a.text-dark:focus {
   margin: 1em;
   padding-left: 1em;
 }
+
+.sliderSection {
+  position: relative;
+}
+
+.slide p {
+  position: absolute;
+  z-index: 2;
+  background-color: rgba(39, 45, 54, 0.8);
+  padding: 5px 10px;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, -10%);
+          transform: translate(-50%, -10%);
+  font-size: 1.2em;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.slider {
+  height: 506px;
+  width: 100%;
+  margin-bottom: 60px;
+  position: relative;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+}
+
+.slide {
+  position: absolute;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+  height: 500px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slide img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transform: none;
+          transform: none;
+}
+
+#next {
+  position: absolute;
+  z-index: 3;
+  cursor: pointer;
+  padding: 5px 10px;
+  bottom: 50%;
+  right: 0;
+  -webkit-transform: translate(0, 50%);
+          transform: translate(0, 50%);
+  font-size: 3em;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+#prev {
+  position: absolute;
+  z-index: 3;
+  cursor: pointer;
+  padding: 5px 10px;
+  bottom: 50%;
+  left: 0;
+  -webkit-transform: translate(0, 50%);
+          transform: translate(0, 50%);
+  font-size: 3em;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+#pause {
+  font-size: 3em;
+  position: absolute;
+  z-index: 3;
+  right: 0.25em;
+  bottom: 0.25em;
+  cursor: pointer;
+}
 /*# sourceMappingURL=global.css.map */

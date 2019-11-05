@@ -29,9 +29,16 @@
                         {% elseif trame.locked == app.user.username %}
                             <a href="{{ path('edit_trame', {'id' : trame.id}) }}" class="btn btn-primary">Modifier <i class="fas fa-lock"></i> ({{ app.user.username }})</a>
                             <a href="{{ path('delete_trame', {'id' : trame.id}) }}" class="btn btn-danger">Supprimer <i class="fas fa-lock"></i> ({{ app.user.username }})</a>
+                            <a href="{{ path('unlock_trame', {'id' : trame.id}) }}" class="btn btn-success">Unlock</a>
                         {% else %}
-                            <a href="#" class="btn btn-primary disabled">Modifier <i class="fas fa-lock"></i> ({{ app.user.username }})</a>
-                            <a href="#" class="btn btn-danger disabled">Supprimer <i class="fas fa-lock"></i> ({{ app.user.username }})</a>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="#" class="btn btn-primary disabled">Modifier<i class="fas fa-lock"></i> ({{ app.user.username }})</a>
+                                <a href="#" class="btn btn-danger disabled">Supprimer<i class="fas fa-lock"></i> ({{ app.user.username }})</a>
+                                <a href="{{ path('unlock_event', {'id' : event.id}) }}" class="btn btn-success">Unlock</a>
+                            {% else %}
+                                <a href="#" class="btn btn-primary disabled">Modifier<i class="fas fa-lock"></i> ({{ app.user.username }})</a>
+                                <a href="#" class="btn btn-danger disabled">Supprimer<i class="fas fa-lock"></i> ({{ app.user.username }})</a>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>

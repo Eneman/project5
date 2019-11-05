@@ -25,7 +25,7 @@ class OrgaController extends AbstractController
     public function createEvent(Request $request, ObjectManager $manager)
     {
         $event = new GNEvent();
-        $form = $this->createForm(GNEventType::class, $event, User);
+        $form = $this->createForm(GNEventType::class, $event);
 
         $form->handleRequest($request);
 
@@ -105,7 +105,7 @@ class OrgaController extends AbstractController
         } elseif ($event->getLocked() == $user->getUsername()) {
             $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted()) {
                 $event->setLocked(null);
                 $manager->persist($event);
                 $manager->flush();

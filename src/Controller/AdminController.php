@@ -3,13 +3,20 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\Slide;
+use App\Entity\Trame;
 use App\Entity\Player;
 use App\Form\PostType;
+use App\Entity\GNEvent;
 use App\Form\PlayerType;
+use App\Form\SliderType;
 use App\Entity\User as AppUser;
 use App\Repository\PostRepository;
+use App\Repository\SlideRepository;
 use App\Repository\UserRepository;
+use App\Repository\TrameRepository;
 use App\Repository\PlayerRepository;
+use App\Repository\GNEventRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\User\User;
@@ -191,5 +198,49 @@ class AdminController extends AbstractController
         $manager->flush();
         
         return $this->redirectToRoute('view_posts');
+    }
+
+    /**
+     * @Route("admin/unlock/event/{id}", name="unlock_event")
+     */
+    public function unlockEvent(GNEvent $gnEvent, ObjectManager $manager)
+    {
+        $gnEvent->setLocked("");
+        $manager->flush();
+        return $this->redirectToRoute('orga');
+    }
+
+    /**
+     * @Route("admin/unlock/trame/{id}", name="unlock_trame")
+     */
+    public function unlockTrame(Trame $trame, ObjectManager $manager)
+    {
+        $trame->setLocked("");
+        $manager->flush();
+        return $this->redirectToRoute('view_event', ["id" => $trame->getGnevent()->getId()]);
+    }
+
+    /**
+     * @Route("admin/slide/new", name="new_slide")
+     */
+    public function newSlide(Request $request, ObjectManager $manager)
+    {
+        $slide = new Slide();
+        $slide->setUpdatedAt(new \DateTime());
+        $form = $this->createForm(SliderType::class, $slide);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($slide);
+            $manager->flush();
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('admin/newSlide.html.twig', [
+            'slide' => $slide,
+            'form' => $form->createView(),
+            'new' => true
+        ]);
     }
 }
